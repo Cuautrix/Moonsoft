@@ -25,11 +25,11 @@
     
     
     
-    $query = "INSERT INTO  vehiculo (placas, modelo, marca,color,ID_CLIENTE) 
+    $query = "INSERT INTO  ms_vehiculo (placas, modelo, marca,color,id_cliente) 
                 VALUES('$placas','$modelo','$marca','$color','$correo')";
 
    
-    $verificar_correo = mysqli_query($conexion, "SELECT * FROM vehiculo WHERE placas='$placas'");
+    $verificar_correo = mysqli_query($conexion, "SELECT * FROM ms_vehiculo WHERE placas='$placas'");
 
     if(mysqli_num_rows($verificar_correo)>0){
         echo'

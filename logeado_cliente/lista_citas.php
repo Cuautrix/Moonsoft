@@ -117,20 +117,20 @@
     <?php
     include "../php/bd.php";
     $id=$_SESSION['correosesion'];
-    $buscar =" SELECT * FROM  citas WHERE ID_CLIENTE='$id'";
+    $buscar =" SELECT * FROM  ms_cita WHERE id_cliente='$id'";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {
                         echo "<tr>";
                         echo "<td>"; echo $filas ['vehiculo']; echo "</td>";
                         echo "<td>"; echo $filas ['servicio']; echo "</td>";
-                        echo "<td>"; echo $filas ['nombre_mecanico']; echo "</td>";
+                        echo "<td>"; echo $filas ['nombre_mec']; echo "</td>";
                         echo "<td>"; echo $filas ['estado']; echo "</td>";
                        
     ?>
                         <div class="modal-footer rounded-0">
                             <div class="text-end">
-                                <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['id'];?>">  Detalles</button></td>
+                                <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['id_cita'];?>">  Detalles</button></td>
                             </div>
                         </div>
                         <?php
@@ -139,11 +139,11 @@
                 
         <!-- Modal -->
 
-        <div class="modal fade" id="view<?php echo $filas['id'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="view<?php echo $filas['id_cita'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:<?php echo $filas ['id'];?></h1>               
+                <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:<?php echo $filas ['id_cita'];?></h1>               
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">             
@@ -151,10 +151,10 @@
                 <p class="card-text">Tu vehiculo elegido:<?php echo $filas ['vehiculo'];?></p> 
                 <p class="card-text">Servicio:<?php echo $filas ['servicio'];?></p> 
                 <p class="card-text">Comentario:<?php echo $filas ['comentario'];?></p>
-                <p class="card-text">Fecha y horade inicio elegida:<?php echo $filas ['start_datetime'];?></p> 
-                <p class="card-text">Fecha y horade de finalizacion:<?php echo $filas ['end_datetime'];?></p>  
+                <p class="card-text">Fecha :<?php echo $filas ['fecha'];?></p> 
+                <p class="card-text">Hora:<?php echo $filas ['hora'];?></p>  
                 <p class="card-text">Estado de la cita:<?php echo $filas ['estado'];?></p> 
-                <p class="card-text">Nombre del mecanico asignado:<?php echo $filas ['nombre_mecanico'];?></p> 
+                <p class="card-text">Nombre del mecanico asignado:<?php echo $filas ['nombre_mec'];?></p> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

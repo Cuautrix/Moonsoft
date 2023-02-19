@@ -9,10 +9,10 @@
     
 
 
-    $validar_login=mysqli_query($conexion,"SELECT * FROM administrador WHERE email_admin='$correo' and pass_admin='$contraseña'");
+    $validar_login=mysqli_query($conexion,"SELECT * FROM dt_administrador WHERE email_admin='$correo' and pass_admin='$contraseña'");
 
     if(mysqli_num_rows($validar_login)>0){
-		$result= mysqli_query($conexion,"SELECT id_admin FROM administrador WHERE email_admin='$correo'");
+		$result= mysqli_query($conexion,"SELECT id_admin FROM dt_administrador WHERE email_admin='$correo'");
 			if($result->num_rows>0){
 				while($consulta= $result->fetch_assoc()){
 					$id=$consulta['id_admin'];

@@ -118,13 +118,13 @@
                 <tbody >
                 <?php
     include "../php/bd.php";
-    $buscar =" SELECT * FROM  mecanico";
+    $buscar =" SELECT * FROM  dt_mecanico";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {
                         echo "<tr>";
                         echo "<td>"; echo $filas ['id_mec']; echo "</td>";
-                        echo "<td>"; echo $filas ['nombre']; echo "</td>";
+                        echo "<td>"; echo $filas ['nombre_mec']; echo "</td>";
                         echo "<td>"; echo $filas ['email_mec']; echo "</td>";
                         echo "<td>"; echo $filas ['tel']; echo "</td>";
                         ?>    
@@ -150,7 +150,7 @@
                               </div>
                               <div class="modal-body">             
 
-                                  <p class="card-text">Nombre:<?php echo $filas ['nombre'];?></p> 
+                                  <p class="card-text">Nombre:<?php echo $filas ['nombre_mec'];?></p> 
                                   <p class="card-text">Apellido Paterno:<?php echo $filas ['ape_p'];?></p> 
                                   <p class="card-text">Apellido Materno:<?php echo $filas ['ape_m'];?></p>
                                   <p class="card-text">Direccion:<?php echo $filas ['direccion'];?></p> 

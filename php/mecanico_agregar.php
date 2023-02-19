@@ -2,7 +2,7 @@
     include 'bd.php';
 
 
-    $nombre = $_POST['nombre'];
+    $nombre_mec = $_POST['nombre'];
     $ap_p = $_POST['apellido_p'];
     $ap_m = $_POST['apellido_m'];
     $direccion =$_POST['direccion'];
@@ -13,10 +13,10 @@
  
 
 
-    $query = "INSERT INTO  mecanico(nombre, ape_p, ape_m,direccion,email_mec,pass_mec,tel) 
-                VALUES('$nombre','$ap_p','$ap_m','$direccion','$correo','$contraseña','$cel')";
+    $query = "INSERT INTO  dt_mecanico(nombre_mec, ape_p, ape_m,direccion,email_mec,pass_mec,tel) 
+                VALUES('$nombre_mec','$ap_p','$ap_m','$direccion','$correo','$contraseña','$cel')";
 
-    $verificar_correo = mysqli_query($conexion, "SELECT * FROM mecanico WHERE email_mec='$correo'");
+    $verificar_correo = mysqli_query($conexion, "SELECT * FROM dt_mecanico WHERE email_mec='$correo'");
 
     if(mysqli_num_rows($verificar_correo)>0){
         echo'

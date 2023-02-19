@@ -112,12 +112,12 @@
                 <tbody >
       <?php
     include "../php/bd.php";
-    $buscar =" SELECT * FROM  vehiculo";
+    $buscar =" SELECT * FROM  ms_vehiculo";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {
                         echo "<tr>";
-                        echo "<td>"; echo $filas ['ID_CLIENTE']; echo "</td>";
+                        echo "<td>"; echo $filas ['id_cliente']; echo "</td>";
                         echo "<td>"; echo $filas ['placas']; echo "</td>";
                         echo "<td>"; echo $filas ['modelo']; echo "</td>";
                         echo "<td>"; echo $filas ['marca']; echo "</td>";

@@ -5,10 +5,10 @@
 
     switch($_GET['accion']){
         case 'listar':
-            $datos=mysqli_query($conexion, " select id,
+            $datos=mysqli_query($conexion, " select id_cita,
             servicio as title,
-            start_datetime as start
-            from citas");
+            fecha as start
+            from ms_cita");
             $resultado=mysqli_fetch_all($datos, MYSQLI_ASSOC);
             echo json_encode($resultado);
 

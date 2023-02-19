@@ -111,39 +111,39 @@
 <?php
     include "../php/bd.php";
     $correo = $_SESSION['id_session_mec'];
-    $result= mysqli_query($conexion,"SELECT nombre FROM mecanico WHERE id_mec='$correo'");
+    $result= mysqli_query($conexion,"SELECT nombre_mec FROM dt_mecanico WHERE id_mec='$correo'");
 			if($result->num_rows>0){
 				while($consulta= $result->fetch_assoc()){
-					$nom=$consulta['nombre'];
-                    $nombre = $nom;
+					$nom=$consulta['nombre_mec'];
+                    $nombre_mec = $nom;
             	}
 			}
-    $buscar =" SELECT * FROM  citas WHERE nombre_mecanico='".$nombre."'  EXCEPT select * from citas where estado='Finalizado'";
+    $buscar =" SELECT * FROM  ms_cita WHERE nombre_mec='".$nombre_mec."'  EXCEPT select * from ms_cita where estado='Finalizado'";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {
                         echo "<tr>";
-                        echo "<td>"; echo $filas ['id']; echo "</td>";
+                        echo "<td>"; echo $filas ['id_cita']; echo "</td>";
                         echo "<td>"; echo $filas ['nombre_cliente']; echo "</td>";
                         echo "<td>"; echo $filas ['vehiculo']; echo "</td>";
                         echo "<td>"; echo $filas ['servicio']; echo "</td>";
-                        echo "<td>"; echo $filas ['nombre_mecanico']; echo "</td>";
+                        echo "<td>"; echo $filas ['nombre_mec']; echo "</td>";
                         echo "<td>"; echo $filas ['estado']; echo "</td>";
                         ?>    
 
                         <div class="modal-footer rounded-0">
                                         <div class="text-end">
-                                            <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['id'];?>">  Modificar</button></td>
+                                            <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['id_cita'];?>">  Modificar</button></td>
                                         </div>
                                     </div>
                                     
                          <!-- Modal -->
 
-                          <div class="modal fade" id="view<?php echo $filas['id'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal fade" id="view<?php echo $filas['id_cita'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog">
                               <div class="modal-content">
                               <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:<?php echo $filas ['id'];?></h1>               
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:<?php echo $filas ['id_cita'];?></h1>               
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">   
@@ -152,13 +152,14 @@
                                   <p class="card-text">El vehiculo elegido:<?php echo $filas ['vehiculo'];?></p> 
                                   <p class="card-text">Servicio:<?php echo $filas ['servicio'];?></p> 
                                   <p class="card-text">Comentario:<?php echo $filas ['comentario'];?></p>
-                                  <p class="card-text">Fecha y hora Programada:<?php echo $filas ['start_datetime'];?></p>  
+                                  <p class="card-text">Fecha  Programada:<?php echo $filas ['fecha'];?></p>  
+                                  <p class="card-text">Hora Programada:<?php echo $filas ['hora'];?></p>  
                               </div>
                             <!--  Form -->
                                   <form action="../php/cita_modificar.php" method="POST">
                                   <div class="fadeIn second">
                                   <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:</h1>
-                                      <input type="text" id="login"  name="id" value="<?php echo $filas ['id'];?>" readonly=»readonly» required >
+                                      <input type="text" id="login"  name="id" value="<?php echo $filas ['id_cita'];?>" readonly=»readonly» required >
                                   </div>  
                                   <div class="form-group">
                                           <label for="exampleFormControlSelect1">Estado de la cita</label>
@@ -173,11 +174,6 @@
                                                 <label for="description" class="control-label">Comentario</label>
                                                 <textarea rows="3" class="form-control form-control-sm rounded-0" name="comentario" id="description"  value="<?php echo $filas ['comentario'];?>" required></textarea>
                                     </div>
-                                    <div class="form-group mb-2">
-                                      <label for="end_datetime" class="control-label">Fecha y hora de de finalizacion</label>
-                                      <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
-                                    </div>
-                                    
                                     <br>
                                       <input type="submit" class="fadeIn fourth" value="Modificar">
                                       

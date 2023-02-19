@@ -97,7 +97,7 @@
       include "../php/bd.php";
       $placas=$_GET['placas'];
 
-      $buscar =" SELECT * FROM  vehiculo WHERE placas='".$placas."'";
+      $buscar =" SELECT * FROM  ms_vehiculo WHERE placas='".$placas."'";
       $resultado=mysqli_query($conexion,$buscar);
       if ($row = mysqli_fetch_array($resultado)) {
         $placas= $row['placas'];

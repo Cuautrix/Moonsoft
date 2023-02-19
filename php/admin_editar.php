@@ -13,7 +13,7 @@
 
 
 $respuesta = new stdClass();
-    $query  =  sprintf("UPDATE administrador SET id_admin='".$id."',nombre='".$nombre."', ape_p='".$apellido_p."',ape_m='".$apellido_m."',direccion='".$direccion."',tel='".$cel."',email_admin='".$correo."',pass_admin='".$pass."' WHERE id_admin='".$id."'",
+    $query  =  sprintf("UPDATE dt_administrador SET id_admin='".$id."',nombre='".$nombre."', ape_p='".$apellido_p."',ape_m='".$apellido_m."',direccion='".$direccion."',tel='".$cel."',email_admin='".$correo."',pass_admin='".$pass."' WHERE id_admin='".$id."'",
                 trim($_REQUEST['id']), trim($_REQUEST["id"]));
 $result=mysqli_query($conexion, $query);                        
     if(mysqli_affected_rows($conexion)){

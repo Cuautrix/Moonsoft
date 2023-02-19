@@ -3,7 +3,7 @@
 $conexion =  mysqli_connect ("localhost","root","","taller");
 
 if ($conexion){
-   
+	
 }else{
 	echo'no conectado';
 }

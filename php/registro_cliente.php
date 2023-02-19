@@ -6,17 +6,17 @@
     $ap_p = $_POST['apellido_p'];
     $ap_m = $_POST['apellido_m'];
     $direccion =$_POST['direccion'];
-    $correo = $_POST['correo'];
-    $contraseña = $_POST['pass'];
+    $correo =  $_POST['correo'];
+    $contraseña =$_POST['pass'];
     $cel = $_POST['cel'];
     
  
 
 
-    $query = "INSERT INTO  clientes (NOMBRE, APE_P, APE_M,DIRECCION,EMAIL_CLI,PASS_CLIENTE,TEL_CLI) 
+    $query = "INSERT INTO  ms_cliente (nombre, ape_p, ape_m,direccion,email_cli,pass_cliente,tel_cli) 
                 VALUES('$nombre','$ap_p','$ap_m','$direccion','$correo','$contraseña','$cel')";
 
-    $verificar_correo = mysqli_query($conexion, "SELECT * FROM clientes WHERE EMAIL_CLI='$correo'");
+    $verificar_correo = mysqli_query($conexion, "SELECT * FROM ms_cliente WHERE email_cli='$correo'");
 
     if(mysqli_num_rows($verificar_correo)>0){
         echo'

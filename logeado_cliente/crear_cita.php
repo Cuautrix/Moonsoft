@@ -178,12 +178,11 @@
                           <?php                           
                           include "../php/bd.php";
                           $id=$_SESSION['correosesion'];
-                          $buscar =" SELECT * FROM  vehiculo WHERE ID_CLIENTE='$id'";
+                          $buscar =" SELECT * FROM  ms_vehiculo WHERE id_cliente='$id'";
                           $resultado=mysqli_query($conexion,$buscar);
                           while($filas=mysqli_fetch_array($resultado))
                           {   
                                                 echo "<option>"; echo $filas ['modelo']; echo"</option>";
-
                           }
                           ?>
                           <!---FIN DE LA CONSULTA PARA MONSTRAR LOS VEHICULOS--->
@@ -193,39 +192,38 @@
                       <div class="form-group">
                         <label for="exampleFormControlSelect1">Elije el servicio</label>
                           <select class="form-control" id="exampleFormControlSelect1" name="servicio">
-                            <option>Afinacion</option>
-                            <option>Balatas</option>
-                            <option>Reparación de Marchas</option>
-                            <option>Reaparación de Alternadores</option>
-                            <option>Electricidad Automotriz</option>
-                            <option>Sistema Eléctrico de luces</option>
-                            <option>Revisión del Sistema de Ignición</option>
+                          <!---CONSULTA PARA MONSTRAR LOS SERVICIOS--->
+                          <?php                           
+                          include "../php/bd.php";
+                          $id=$_SESSION['correosesion'];
+                          $buscar =" SELECT * FROM  dt_servicio ";
+                          $resultado=mysqli_query($conexion,$buscar);
+                          while($filas=mysqli_fetch_array($resultado))
+                          {   
+                                                echo "<option>"; echo $filas ['servicio']; echo"</option>";
+                          }
+                          ?>
+                          <!---FIN DE LA CONSULTA PARA MONSTRAR LOS SERVICIOS--->
                           </select>
-                      </div>                         
+                      </div>   
+                      <!---DATE PICKER PARA SELECCIONAR LA FECHA--->                      
                       <div class="form-group mb-2">
                         <label for="start_datetime" class="control-label">Dia </label>
-                        <div class="input-group date cc-date">
-                          <input type="text" class="form-control" name="fecha_inicio"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                        </div>
+                          <div class="input-group date cc-date">
+                            <input type="search" class="form-control" id="search" name="fecha_inicio" require><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            <button class="btn btn-primary "type="button"  id="btn1" >Buscar Horarios </button>
+                          </div>
                       </div>
-                      <div class="form-group mb-2">
-                        <label for="exampleFormControlSelect1">Hora</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="Hora">
-                          <option>8:00</option>
-                          <option>Balatas</option>
-                          <option>Reparación de Marchas</option>
-                          <option>Reaparación de Alternadores</option>
-                          <option>Electricidad Automotriz</option>
-                          <option>Sistema Eléctrico de luces</option>
-                          <option>Revisión del Sistema de Ignición</option>
-                        </select>
-                      </div>
+                       <!--- FIN DATE PICKER PARA SELECCIONAR LA FECHA--->  
+                       <!---MUESTRA LOS HORARIOS DISPONIBLES DE LA FECHA--->  
+                      <label for="exampleFormControlSelect1">Hora</label>       
+                      <div id="seccion" name="hora"></div> 
+                      <!--- FIN DE LA MUESTRA LOS HORARIOS DISPONIBLES DE LA FECHA--->                      
                       <div class="form-group mb-2">
                         <label for="description" class="control-label">Comentario</label>
                         <textarea rows="3" class="form-control form-control-sm rounded-0" name="comentario" id="description" required></textarea>
                       </div>
                     </form>
-                    <!-- FIN DEL FORMULARIO PARA AGENDAR LA CITA-->
                   </div>
                 </div>
                 <br>
@@ -235,6 +233,7 @@
                     <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Agendar cita</button>         
                   </div>
                 </div>
+                 <!-- FIN DEL FORMULARIO PARA AGENDAR LA CITA-->
                 <br>
                 <!---LABEL PARA AGREGAR VEHICULO--->
                 <label for="exampleFormControlSelect1">¿Aun no agregas tu vehiculo?</label>
@@ -288,7 +287,6 @@
     </div>
     <!---FIN DEL FORMULARIO PARA AGENDAR CITAS--->
   </body>
-
 <!--Script js para el DatePicker del formulario-->
 <script src="../libs/app.js" charset="utf-8"> </script> 
 </html>

@@ -13,10 +13,10 @@
  
 
 
-    $query = "INSERT INTO  administrador(nombre, ape_p, ape_m,direccion,email_admin,pass_admin,tel) 
+    $query = "INSERT INTO  dt_administrador(nombre, ape_p, ape_m,direccion,email_admin,pass_admin,tel) 
                 VALUES('$nombre','$ap_p','$ap_m','$direccion','$correo','$contraseña','$cel')";
 
-    $verificar_correo = mysqli_query($conexion, "SELECT * FROM administrador WHERE email_admin='$correo'");
+    $verificar_correo = mysqli_query($conexion, "SELECT * FROM dt_administrador WHERE email_admin='$correo'");
 
     if(mysqli_num_rows($verificar_correo)>0){
         echo'

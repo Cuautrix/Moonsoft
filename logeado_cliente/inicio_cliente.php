@@ -37,14 +37,14 @@
         <?php 
           include "../php/bd.php";
           $id=$_SESSION['correosesion'];
-          $buscar =" SELECT NOMBRE FROM  clientes WHERE ID_CLIENTE='$id'";
+          $buscar =" SELECT nombre FROM  ms_cliente WHERE id_cliente='$id'";
           $resultado=mysqli_query($conexion,$buscar);
           while($filas=mysqli_fetch_array($resultado))
           {
-            $NOMBRE= $filas['NOMBRE'];
+            $nombre= $filas['nombre'];
           }
         ?>
-        <a class="navbar-brand me-auto" ><?php echo $NOMBRE?></a>
+        <a class="navbar-brand me-auto" ><?php echo $nombre?></a>
 
         <button class="navbar-toggler pe-2" onclick="window.location.href='./perfil_cliente.php'" type="button" style="left: 85%; position: absolute;"  aria-controls="offcanvasDarkNavbar">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">

@@ -103,7 +103,7 @@
                     <tr>
 
                         <th > ID</th>
-                        <th > NOMBRE</th>
+                        <th > nombre</th>
                         <th > CORREO </th>                       
                         <th > TELEFONO</th>
                         
@@ -113,44 +113,40 @@
                 <tbody >
 <?php
     include "../php/bd.php";
-    $buscar =" SELECT * FROM  clientes";
+    $buscar =" SELECT * FROM  ms_cliente";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {
                         echo "<tr>";
-                        echo "<td>"; echo $filas ['ID_CLIENTE']; echo "</td>";
-                        echo "<td>"; echo $filas ['NOMBRE']; echo "</td>";
-                        echo "<td>"; echo $filas ['EMAIL_CLI']; echo "</td>";
-                        echo "<td>"; echo $filas ['TEL_CLI']; echo "</td>";
+                        echo "<td>"; echo $filas ['id_cliente']; echo "</td>";
+                        echo "<td>"; echo $filas ['nombre']; echo "</td>";
+                        echo "<td>"; echo $filas ['email_cli']; echo "</td>";
+                        echo "<td>"; echo $filas ['tel_cli']; echo "</td>";
                         ?>    
 
                         <div class="modal-footer rounded-0">
                                         <div class="text-end">
-                                            <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['ID_CLIENTE'];?>">  Detalles</button></td>
+                                            <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['id_cliente'];?>">  Detalles</button></td>
                                         </div>
                                     </div>
-                                    <?php
-                                    echo "<td> 
-                                    <a href='../php/vehiculo_eliminar.php?id=".$filas['ID_CLIENTE']."'><button type='button' onclick='window.location.href='../php/vehiculo_eliminar.php'' class='btn btn-danger' >   Eliminar                         
-                                    </button> </a> </td>";
-                                    echo "</tr>"; ?>
+                                    
                          <!-- Modal -->
 
-                          <div class="modal fade" id="view<?php echo $filas['ID_CLIENTE'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal fade" id="view<?php echo $filas['id_cliente'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog">
                               <div class="modal-content">
                               <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE CLIENTE:<?php echo $filas ['ID_CLIENTE'];?></h1>               
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE CLIENTE:<?php echo $filas ['id_cliente'];?></h1>               
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">             
 
-                                  <p class="card-text">Nombre:<?php echo $filas ['NOMBRE'];?></p> 
-                                  <p class="card-text">Apellido Paterno:<?php echo $filas ['APE_P'];?></p> 
-                                  <p class="card-text">Apellido Materno:<?php echo $filas ['APE_M'];?></p>
-                                  <p class="card-text">Direccion:<?php echo $filas ['DIRECCION'];?></p> 
-                                  <p class="card-text">Telefono:<?php echo $filas ['TEL_CLI'];?></p>  
-                                  <p class="card-text">Correo:<?php echo $filas ['EMAIL_CLI'];?></p> 
+                                  <p class="card-text">nombre:<?php echo $filas ['nombre'];?></p> 
+                                  <p class="card-text">Apellido Paterno:<?php echo $filas ['ape_p'];?></p> 
+                                  <p class="card-text">Apellido Materno:<?php echo $filas ['ape_m'];?></p>
+                                  <p class="card-text">Direccion:<?php echo $filas ['direccion'];?></p> 
+                                  <p class="card-text">Telefono:<?php echo $filas ['tel_cli'];?></p>  
+                                  <p class="card-text">Correo:<?php echo $filas ['email_cli'];?></p> 
 
                               </div>
                               <div class="modal-footer">

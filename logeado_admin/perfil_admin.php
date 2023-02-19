@@ -95,7 +95,7 @@
       include "../php/bd.php";
       $id=$_SESSION['correosesion_admin'];
 
-      $buscar =" SELECT * FROM  administrador WHERE id_admin='$id'";
+      $buscar =" SELECT * FROM  dt_administrador WHERE id_admin='$id'";
       $resultado=mysqli_query($conexion,$buscar);
       if ($row = mysqli_fetch_array($resultado)) {
         $id_admin= $row['id_admin'];
@@ -146,7 +146,7 @@
           <span class="material-symbols-outlined">phone_iphone</span>
         </div>
         <br>
-          <input type="submit" class="fadeIn fourth" value="Registrate">
+          <input type="submit" class="fadeIn fourth" value="Actualizar datos">
         
       </form>
   

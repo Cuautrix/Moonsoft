@@ -12,7 +12,7 @@
     echo $color;
 
 $respuesta = new stdClass();
-    $query  =  sprintf("UPDATE vehiculo SET modelo='".$modelo."', marca='".$marca."',color='".$color."' WHERE placas='".$placas."'",
+    $query  =  sprintf("UPDATE ms_vehiculo SET modelo='".$modelo."', marca='".$marca."',color='".$color."' WHERE placas='".$placas."'",
                 trim($_REQUEST['modelo']), trim($_REQUEST["modelo"]));
 $result=mysqli_query($conexion, $query);                        
     if(mysqli_affected_rows($conexion)){

@@ -122,7 +122,7 @@
     <?php
     include "../php/bd.php";
     $id=$_SESSION['correosesion'];
-    $buscar =" SELECT * FROM  vehiculo WHERE ID_CLIENTE='$id'";
+    $buscar =" SELECT * FROM  ms_vehiculo WHERE id_cliente='$id'";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {

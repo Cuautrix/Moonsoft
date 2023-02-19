@@ -98,17 +98,17 @@
       include "../php/bd.php";
       $id=$_SESSION['correosesion'];
 
-      $buscar =" SELECT * FROM  clientes WHERE ID_CLIENTE='$id'";
+      $buscar =" SELECT * FROM  ms_cliente WHERE id_cliente='$id'";
       $resultado=mysqli_query($conexion,$buscar);
       if ($row = mysqli_fetch_array($resultado)) {
-        $ID_CLIENTE= $row['ID_CLIENTE'];
-        $NOMBRE= $row['NOMBRE'];
-        $APE_P= $row['APE_P'];
-        $APE_M= $row['APE_M'];
-        $DIRECCION= $row['DIRECCION'];
-        $TEL_CLI= $row['TEL_CLI'];
-        $EMAIL_CLI= $row['EMAIL_CLI'];
-        $PASS_CLIENTE= $row['PASS_CLIENTE'];
+        $id_cliente= $row['id_cliente'];
+        $nombre= $row['nombre'];
+        $ape_p= $row['ape_p'];
+        $ape_m= $row['ape_m'];
+        $direccion= $row['direccion'];
+        $tel_cli= $row['tel_cli'];
+        $email_cli= $row['email_cli'];
+        $pass_cliente= $row['pass_cliente'];
      
     }
 
@@ -116,36 +116,36 @@
       <!-- Login Form -->
       <form action="../php/editar_cliente.php" method="POST">
         <div class="fadeIn second">
-          <input type="text" id="login"  name="id" placeholder="ID"  value="<?php echo $ID_CLIENTE?>" readonly=»readonly» required >
+          <input type="text" id="login"  name="id" placeholder="ID"  value="<?php echo $id_cliente?>" readonly=»readonly» required >
           <span class="material-symbols-outlined">person</span>
         </div>  
       <div class="fadeIn second">
-          <input type="text" id="login"  name="nombre" value="<?php echo $NOMBRE?>" required >
+          <input type="text" id="login"  name="nombre" value="<?php echo $nombre?>" required >
           <span class="material-symbols-outlined">person</span>
         </div>
         <div class="fadeIn second">
-          <input type="text" id="login"  name="apellido_p" value="<?php echo $APE_P?>" required >
+          <input type="text" id="login"  name="apellido_p" value="<?php echo $ape_p?>" required >
           <span class="material-symbols-outlined">contact_mail</span>
         </div>
         <div class="fadeIn second">
-          <input type="text" id="login"  name="apellido_m" value="<?php echo $APE_M?>" required >
+          <input type="text" id="login"  name="apellido_m" value="<?php echo $ape_m?>" required >
           <span class="material-symbols-outlined">contact_mail</span>
         </div>
         
         <div class="fadeIn second">
-          <input type="text" id="login"  name="direccion" value="<?php echo $DIRECCION?>" required >
+          <input type="text" id="login"  name="direccion" value="<?php echo $direccion?>" required >
           <span class="material-symbols-outlined">room</span>
         </div>
         <div class="fadeIn second">
-          <input type="email" id="login"  name="correo" value="<?php echo $EMAIL_CLI?>" required >
+          <input type="email" id="login"  name="correo" value="<?php echo $email_cli?>" required >
           <span class="material-symbols-outlined">mail</span>
         </div>
         <div class="fadeIn third">
-          <input type="password" id="password" class="fadeIn third" name="pass" value="<?php echo $PASS_CLIENTE?>" required>
+          <input type="password" id="password" class="fadeIn third" name="pass" value="<?php echo $pass_cliente?>" required>
           <span class="material-symbols-outlined">key</span>
         </div>
         <div class="fadeIn third">
-          <input type="text" id="login"  name="cel" value="<?php echo $TEL_CLI?>" required >
+          <input type="text" id="login"  name="cel" value="<?php echo $tel_cli?>" required >
           <span class="material-symbols-outlined">phone_iphone</span>
         </div>
         <br>

@@ -13,8 +13,8 @@
 
 
 $respuesta = new stdClass();
-    $query  =  sprintf("UPDATE clientes SET ID_CLIENTE='".$id."',NOMBRE='".$nombre."', APE_P='".$apellido_p."',APE_M='".$apellido_m."',DIRECCION='".$direccion."',TEL_CLI='".$cel."',EMAIL_CLI='".$correo."',PASS_CLIENTE='".$pass."' WHERE ID_CLIENTE='".$id."'",
-                trim($_REQUEST['ID_CLIENTE']), trim($_REQUEST["ID_CLIENTE"]));
+    $query  =  sprintf("UPDATE ms_cliente SET id_cliente='".$id."',nombre='".$nombre."', ape_p='".$apellido_p."',ape_m='".$apellido_m."',direccion='".$direccion."',tel_cli='".$cel."',email_cli='".$correo."',pass_cliente='".$pass."' where id_cliente='".$id."'"
+                );
 $result=mysqli_query($conexion, $query);                        
     if(mysqli_affected_rows($conexion)){
      echo'

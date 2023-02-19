@@ -25,7 +25,7 @@
     
     
     
-    $query = "INSERT INTO  vehiculo (placas, modelo, marca,color,ID_CLIENTE) 
+    $query = "INSERT INTO  ms_vehiculo (placas, modelo, marca,color,ID_CLIENTE) 
                 VALUES('$placas','$modelo','$marca','$color','$correo')";
 
    

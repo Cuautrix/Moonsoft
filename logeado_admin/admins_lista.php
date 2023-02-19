@@ -118,7 +118,7 @@
                 <tbody >
 <?php
     include "../php/bd.php";
-    $buscar =" SELECT * FROM  administrador ";
+    $buscar =" SELECT * FROM  dt_administrador ";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {
