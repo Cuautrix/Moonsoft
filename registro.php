@@ -12,7 +12,8 @@
 </head>
 
 <body >
-  <div class="header">
+<!-- menu-->
+<div class="header">
     <div class="container">
       <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
@@ -21,21 +22,16 @@
           <li class="nav-item"><a href="ubicacion.html" class="nav-link">Ubicacion</a></li>
           <li class="nav-item"><a href="citas.html" class="nav-link">Citas</a></li>
           <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
-          <div class="btn-group">
-            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="btn-group" >
+            <button type="button" class="btn btn-danger " onclick="location.href='login.php'" aria-expanded="false">
               Iniciar Sesion
             </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="logincliente.php">Clientes</a></li>
-              <li><a class="dropdown-item" href="loginmecanico.php">Mecanicos</a></li>
-              <li><a class="dropdown-item" href="loginadmin.php">Administradores</a></li>
-            </ul>
           </div>
-          
+          <li class="nav-item"><a href="registro.php" class="nav-link">Registrarte</a></li>
         </ul>
       </header>
     </div>
-  </div>
+  </div>   
    <!--formulario-->
    <div class="wrapper fadeInDown">
     <div id="formContent">
