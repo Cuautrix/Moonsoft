@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2023 a las 21:29:17
+-- Tiempo de generación: 26-02-2023 a las 06:21:13
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -45,6 +45,29 @@ CREATE TABLE `dt_administrador` (
 INSERT INTO `dt_administrador` (`id_admin`, `nombre`, `ape_p`, `ape_m`, `direccion`, `email_admin`, `pass_admin`, `tel`) VALUES
 (0, 'jessica', 'Martin', 'Martin', 'dasdasdasd', 'jessica123@gmail.com', '123', '745121231'),
 (1, 'Carlos', 'Martin ', 'Chavez', 'Av. Buena Vista', 'carlosmartin03@hotmail.com', '123', '7713905509');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dt_detalle`
+--
+
+CREATE TABLE `dt_detalle` (
+  `descripcion` varchar(150) NOT NULL,
+  `precio` float DEFAULT NULL,
+  `cantidad` int(8) DEFAULT NULL,
+  `total` int(8) DEFAULT NULL,
+  `id_cita` int(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `dt_detalle`
+--
+
+INSERT INTO `dt_detalle` (`descripcion`, `precio`, `cantidad`, `total`, `id_cita`) VALUES
+('dasdasdas', 55, 2, NULL, 4),
+('dasdasdas', 55, 2, 110, 4),
+('dasdasdas', 55, 2, 110, 4);
 
 -- --------------------------------------------------------
 
@@ -121,8 +144,8 @@ CREATE TABLE `ms_cita` (
 --
 
 INSERT INTO `ms_cita` (`id_cita`, `nombre_cliente`, `vehiculo`, `servicio`, `comentario`, `fecha`, `hora`, `estado`, `nombre_mec`, `id_cliente`, `id_servicio`, `id_horario`) VALUES
-(4, 'Carlos Cuautemoc', 'March', 'Balatas', 'dasdasd', '2023-02-24', '08:10:00', 'Inicializa', 'Ale', 3, 111, 27),
-(5, 'Carlos Cuautemoc', 'March', 'Balatas', 'sdsd', '2023-02-24', '08:30:00', 'Pendiente', 'Pendiente', 3, 111, 29);
+(4, 'Carlos Cuautemoc', 'March', 'Balatas', '', '2023-02-24', '08:10:00', 'Pendiente', 'Ale', 3, 111, 27),
+(5, 'Carlos Cuautemoc', 'March', 'Balatas', 'sdsd', '2023-02-24', '08:30:00', 'Pendiente', 'Ale', 3, 111, 29);
 
 -- --------------------------------------------------------
 
@@ -252,16 +275,17 @@ CREATE TABLE `ms_vehiculo` (
   `modelo` varchar(60) NOT NULL,
   `marca` varchar(60) NOT NULL,
   `color` varchar(60) NOT NULL,
-  `id_cliente` int(7) DEFAULT NULL
+  `id_cliente` int(7) DEFAULT NULL,
+  `id_mec` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ms_vehiculo`
 --
 
-INSERT INTO `ms_vehiculo` (`id_vehiculo`, `placas`, `modelo`, `marca`, `color`, `id_cliente`) VALUES
-(99, '54678132', 'March', 'Nissan', 'Rojo', 3),
-(100, '456asd1as', 'Fiesta', 'nissan', 'azul', 4);
+INSERT INTO `ms_vehiculo` (`id_vehiculo`, `placas`, `modelo`, `marca`, `color`, `id_cliente`, `id_mec`) VALUES
+(99, '54678132', 'March', 'Nissan', 'Rojo', 3, NULL),
+(100, '456asd1as', 'Fiesta', 'nissan', 'azul', 4, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -272,6 +296,12 @@ INSERT INTO `ms_vehiculo` (`id_vehiculo`, `placas`, `modelo`, `marca`, `color`, 
 --
 ALTER TABLE `dt_administrador`
   ADD PRIMARY KEY (`id_admin`);
+
+--
+-- Indices de la tabla `dt_detalle`
+--
+ALTER TABLE `dt_detalle`
+  ADD KEY `dt_detalls_ibfk_1` (`id_cita`);
 
 --
 -- Indices de la tabla `dt_mecanico`
@@ -312,7 +342,8 @@ ALTER TABLE `ms_horario`
 --
 ALTER TABLE `ms_vehiculo`
   ADD PRIMARY KEY (`id_vehiculo`),
-  ADD KEY `id_cliente` (`id_cliente`);
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_mec` (`id_mec`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -347,6 +378,12 @@ ALTER TABLE `ms_vehiculo`
 --
 
 --
+-- Filtros para la tabla `dt_detalle`
+--
+ALTER TABLE `dt_detalle`
+  ADD CONSTRAINT `dt_detalls_ibfk_1` FOREIGN KEY (`id_cita`) REFERENCES `ms_cita` (`id_cita`);
+
+--
 -- Filtros para la tabla `dt_servicio`
 --
 ALTER TABLE `dt_servicio`
@@ -359,6 +396,18 @@ ALTER TABLE `ms_cita`
   ADD CONSTRAINT `ms_cita_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `ms_cliente` (`id_cliente`),
   ADD CONSTRAINT `ms_cita_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `dt_servicio` (`id_servicio`),
   ADD CONSTRAINT `ms_cita_ibfk_3` FOREIGN KEY (`id_horario`) REFERENCES `ms_horario` (`id_horario`);
+
+--
+-- Filtros para la tabla `ms_cliente`
+--
+ALTER TABLE `ms_cliente`
+  ADD CONSTRAINT `ms_cliente_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `ms_vehiculo` (`id_cliente`);
+
+--
+-- Filtros para la tabla `ms_vehiculo`
+--
+ALTER TABLE `ms_vehiculo`
+  ADD CONSTRAINT `ms_vehiculo_ibfk_1` FOREIGN KEY (`id_mec`) REFERENCES `dt_mecanico` (`id_mec`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
