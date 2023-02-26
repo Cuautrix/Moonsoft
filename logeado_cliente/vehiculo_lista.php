@@ -106,7 +106,7 @@
     <div class="fondotabla">
     <!--Table-->
     <table class="table table-hover table-fixed">
-<!--Table head-->
+    <!--Table head-->
                 <thead>
                     <tr>
                         

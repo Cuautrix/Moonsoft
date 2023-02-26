@@ -45,7 +45,7 @@
     <script src='../js/popper.min.js'></script>
     <script src='../js/bootstrap-clockpicker.min.js'></script>
     <script src='../js/moment-with-locales.js'></script>
-
+    
     <style>
        /*  ESTILOS PARA EL FORMULARIO  */
         :root {

@@ -6,6 +6,7 @@ $('.cc-date').datepicker({
     daysOfWeekDisabled: "0"
   });
 
+  
 var btn = document.getElementById('btn1');
 var seccion = document.getElementById('seccion');
 var input = document.getElementById('search');

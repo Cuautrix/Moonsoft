@@ -79,90 +79,93 @@
         </div>
       </div>
     </nav>
-    
+    <br>
+    <br>
     <!-- End Example Code -->
     <br>
     <br>
-
-    <br>
-
-   
-
-<!--Titulo de la Tabla-->
+    
+    <!--Titulo de la Pagina-->
     <div fxFlex="auto" style="display: flex; justify-content: center;" >
-            <h2 > Citas</h2>
+            <h2 >Especificaciones de la Cita</h2>
     </div>
-    <br>
-    <br>
-    <div class="fondotabla">
+
+<!-- CONSULTA PARA TRAER DATOS-->
+<?php
+      include "../php/bd.php";
+      $id_cita=$_GET['id_cita'];
+
+      $buscar =" SELECT * FROM  ms_cita WHERE id_cita='".$id_cita."'";
+      $resultado=mysqli_query($conexion,$buscar);
+      if ($row = mysqli_fetch_array($resultado)) {
+        $id_cita= $row['id_cita'];
+        $nombre_cliente= $row['nombre_cliente'];
+        $vehiculo= $row['vehiculo'];
+        $servicio= $row['servicio'];
+        $comentario= $row['comentario'];
+        $fecha= $row['fecha'];
+        $hora= $row['hora'];
+        $estado= $row['estado'];
+        $nombre_mec= $row['nombre_mec'];
+    }
+?>
+<!-- FIN DE LA CONSULTA PARA TRAER DATOS-->
+<!-- IMPRESION DE DATOS-->
+<div class="modal-body">   
+     <p class="card-text"> El Id de cliente:<?php echo $id_cita;?> </p>
+     <p class="card-text">El vehiculo elegido:<?php echo  $vehiculo;?></p> 
+     <p class="card-text">Servicio:<?php echo  $servicio;?></p> 
+     <p class="card-text">Comentario:<?php echo $comentario?></p>
+     <p class="card-text">Fecha  Programada:<?php echo $fecha?></p>  
+     <p class="card-text">Hora Programada:<?php echo $hora?></p>  
+     <p class="card-text">Estado de la cita:<?php echo $estado;?></p> 
+     <p class="card-text">Nombre del mecanico asignado:<?php echo $nombre_mec?></p> 
+ </div>
+<!-- FIN DE  IMPRESION DE DATOS-->
+<!--Titulo de la Tabla-->
+<div fxFlex="auto" style="display: flex; justify-content: center;" >
+            <h2 >Detalles de la Cita</h2>
+ </div>
+ <div class="fondotabla">
     <!--Table-->
     <table class="table table-hover table-fixed">
-<!--Table head-->
+    <!--Table head-->
                 <thead>
-                    <tr>
-                        <th > ID</th>
-                        <th > CLIENTE</th>
-                        <th > VEHICULO</th>
-                        <th > SERVICIO</th>
-                        <th > MECANICO </th>                       
-                        <th > ESTATUS</th>
-                        
-                    
+                    <tr>                   
+                        <th > Descripcion</th>
+                        <th > Precio</th>
+                        <th > Cantidad </th>    
+                        <th > Detalle total </th>                       
                     </tr>
                 </thead>
                 <tbody >
-<?php
+    <?php
     include "../php/bd.php";
-    $buscar =" SELECT * FROM  ms_cita";
+    $id_cita=$_GET['id_cita'];
+    $buscar =" SELECT * FROM  dt_detalle WHERE id_cita='$id_cita'";
     $resultado=mysqli_query($conexion,$buscar);
     while($filas=mysqli_fetch_array($resultado))
     {
                         echo "<tr>";
-                        echo "<td>"; echo $filas ['id_cita']; echo "</td>";
-                        echo "<td>"; echo $filas ['nombre_cliente']; echo "</td>";
-                        echo "<td>"; echo $filas ['vehiculo']; echo "</td>";
-                        echo "<td>"; echo $filas ['servicio']; echo "</td>";
-                        echo "<td>"; echo $filas ['nombre_mec']; echo "</td>";
-                        echo "<td>"; echo $filas ['estado']; echo "</td>";
-                        echo "<td> <a href='./detalles_cita.php?id_cita=".$filas['id_cita']."'> <button type='button' class='btn btn-dark' style='background-color: #002463'> Ver cita                          
-                        </button> </a>";
-                        ?>    
-                        <div class="modal-footer rounded-0">
-                                        <div class="text-end">
-                                            <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['id_cita'];?>">  Detalles</button></td>
-                                        </div>
-                                    </div>
-                                    
-                         <!-- Modal -->
-
-                          <div class="modal fade" id="view<?php echo $filas['id_cita'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                              <div class="modal-content">
-                              <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:<?php echo $filas ['id_cita'];?></h1>               
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">             
-                                  <p class="card-text"> Tu Id de cliente:<?php echo $filas ['id_cliente'];?> </p>
-                                  <p class="card-text">Tu vehiculo elegido:<?php echo $filas ['vehiculo'];?></p> 
-                                  <p class="card-text">Servicio:<?php echo $filas ['servicio'];?></p> 
-                                  <p class="card-text">Comentario:<?php echo $filas ['comentario'];?></p>
-                                  <p class="card-text">Fecha elegida:<?php echo $filas ['fecha'];?></p> 
-                                  <p class="card-text">Hora Elegida:<?php echo $filas ['hora'];?></p>  
-                                  <p class="card-text">Estado de la cita:<?php echo $filas ['estado'];?></p> 
-                                  <p class="card-text">Nombre del mecanico asignado:<?php echo $filas ['nombre_mec'];?></p> 
-                              </div>
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                              </div>
-                              </div>
-                          </div>
-                          </div>
-                    <?php }
-                  ?>
-                </tbody>
+                        echo "<td>"; echo $filas ['descripcion']; echo "</td>";
+                        echo "<td>"; echo "$"; echo $filas ['precio']; echo "</td>";
+                        echo "<td>"; echo $filas ['cantidad']; echo "</td>";      
+                        echo "<td>"; echo "$"; echo $filas ['total']; echo "</td>";                               
+    }
+    ?>
+    </tbody>
+    <?php
+    $id_cita=$_GET['id_cita'];
+    $buscar =mysqli_query($conexion," SELECT SUM(total) FROM  dt_detalle WHERE id_cita='$id_cita'");
+    $total=mysqli_fetch_array($buscar);
+    ?>
+    
 <!--Table body-->
-  </table>
+    </table>
+    <p class="card-text">Total:<?php echo "$"; echo $total[0]?></p>
+    
+    
 </div>
-</body>
-</html>
+
+
+ 

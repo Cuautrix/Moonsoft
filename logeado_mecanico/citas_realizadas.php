@@ -18,6 +18,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JQUERY PARA DATEPICKER -->
+    <script src="../libs/jquery.js" charset="utf-8"> </script> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>CheckHuapilla</title>
@@ -26,6 +28,7 @@
     <link href="../estilos/estilos_c.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
+
   <body >
 
     <!-- Example Code -->
@@ -129,15 +132,19 @@
                         echo "<td>"; echo $filas ['servicio']; echo "</td>";
                         echo "<td>"; echo $filas ['nombre_mec']; echo "</td>";
                         echo "<td>"; echo $filas ['estado']; echo "</td>";
+                        echo "<td> <a href='./cita_editar.php?id_cita=".$filas['id_cita']."'> <button type='button' class='btn btn-dark' style='background-color: #002463'>   Editar                           
+                        </button> </a>";
+                        
                         ?>    
 
                         <div class="modal-footer rounded-0">
-                                        <div class="text-end">
-                                            <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#view<?php echo $filas['id_cita'];?>">  Modificar</button></td>
-                                        </div>
-                                    </div>
+                         
+                          <div class="text-end">
+                            <td><button type='button' class='btn btn-dark' style='background-color: #002463' data-bs-toggle="modal" data-bs-target="#views<?php echo $filas['id_cita'];?>">  Detalles</button></td>
+                          </div>
+                        </div>
                                     
-                         <!-- Modal -->
+                         <!-- Modal Modificar-->
 
                           <div class="modal fade" id="view<?php echo $filas['id_cita'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog">
@@ -155,33 +162,61 @@
                                   <p class="card-text">Fecha  Programada:<?php echo $filas ['fecha'];?></p>  
                                   <p class="card-text">Hora Programada:<?php echo $filas ['hora'];?></p>  
                               </div>
+                              <h1 class="modal-title fs-5" id="staticBackdropLabel">DETALLES:</h1>
+                              <div class="modal-body">  
+                                   
+                              </div>
+                              
                             <!--  Form -->
                                   <form action="../php/cita_modificar.php" method="POST">
-                                  <div class="fadeIn second">
-                                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:</h1>
-                                      <input type="text" id="login"  name="id" value="<?php echo $filas ['id_cita'];?>" readonly=»readonly» required >
-                                  </div>  
-                                  <div class="form-group">
-                                          <label for="exampleFormControlSelect1">Estado de la cita</label>
-                                          <select class="form-control" id="exampleFormControlSelect1" name="estado">
-                                            <option>Pendiente</option>
-                                            <option>Inicializado</option>
-                                            <option>En Proceso</option>
-                                            <option>Finalizado</option>
-                                          </select>
-                                      </div>
-                                    <div class="form-group mb-2">
-                                                <label for="description" class="control-label">Comentario</label>
-                                                <textarea rows="3" class="form-control form-control-sm rounded-0" name="comentario" id="description"  value="<?php echo $filas ['comentario'];?>" required></textarea>
-                                    </div>
-                                    <br>
+                                    <div class="fadeIn second">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:</h1>
+                                        <input type="text" id="login"  name="id" value="<?php echo $filas ['id_cita'];?>" readonly=»readonly» required >
+                                    </div>  
+                                    <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Estado de la cita</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="estado">
+                                              <option>Pendiente</option>
+                                              <option>Inicializado</option>
+                                              <option>En Proceso</option>
+                                              <option>Finalizado</option>
+                                            </select>
+                                        </div>                         
+                                      <br>
                                       <input type="submit" class="fadeIn fourth" value="Modificar">
-                                      
                                   </form>
-                              
-                             
                               </div>
                           </div>
+                          </div>
+                          <!-- Modal Detalles-->
+
+                          <div class="modal fade" id="views<?php echo $filas['id_cita'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                              <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:<?php echo $filas ['id_cita'];?></h1>               
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>                             
+                            <!--  Form -->
+                                  <form action="../php/detalle_agregar.php" method="POST">
+                                    <div class="fadeIn second">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"> ID DE LA CITA:</h1>
+                                        <input type="text" id="login"  name="id" value="<?php echo $filas ['id_cita'];?>" readonly=»readonly» required >
+                                    </div>  
+                                    <div class="fadeIn second">
+                                      <label for="description" class="control-label">Descripcion del Detalle</label>
+                                      <textarea rows="3" class="form-control form-control-sm rounded-0" name="descripcion" id="description" required></textarea>
+                                    </div>
+                                    <div class="fadeIn second">
+                                        <input type="text" id="login"  name="precio" placeholder="Precio" required >
+                                    </div>    
+                                    <div class="fadeIn second">
+                                        <input type="text" id="login"  name="cantidad" placeholder="Cantidad" required >
+                                    </div>                      
+                                      <br>
+                                      <input type="submit" class="fadeIn fourth" value="Agregar Detalle">
+                                  </form>
+                              </div>
                           </div>
                     <?php }
                   ?>
